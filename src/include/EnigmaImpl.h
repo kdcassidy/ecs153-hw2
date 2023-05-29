@@ -7,7 +7,13 @@
 #include "Rotor.h"
 
 struct Enigma {
-  /* Your implementation of Enigma */
+	size_t num_rotors;
+	char **rotors;
+	size_t *rings;
+	size_t *inits;
+	char *reflector;
+	size_t num_pairs;
+	char *pairs;
 };
 
 #endif
