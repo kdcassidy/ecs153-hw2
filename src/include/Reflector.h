@@ -3,6 +3,6 @@
 
 #include "common.h"
 
-char reflector_shuffle(const char letter_in, const char *reflectors);
+char reflector_shuffle(const char letter_in, const char *reflector);
 
 #endif
