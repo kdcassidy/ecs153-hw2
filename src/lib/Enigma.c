@@ -4,6 +4,7 @@
 #include "Reflector.h"
 #include "Rotor.h"
 #include <string.h>
+#include <stdio.h> // Remove later
 
 size_t ascii_to_int(char letter) {
 	return letter - 'A';
@@ -86,10 +87,12 @@ void get_setting_Enigma(Enigma *self, char *ret) {
 
 void tick_Enigma(Enigma *self) {
 	self->current_settings[self->num_rotors - 1] = (self->current_settings[self->num_rotors - 1] + 1) % 26;
-	for (int i = self->num_rotors - 2; i <= 0; i--) {
+	for (int i = self->num_rotors - 2; i >= 0; i--) {
+		//DEBUGF("i = %d: %c\n", i, (self->rotors[i + 1][27]));
+		//DEBUGF("i = %d: %d\n", i, (int)((ascii_to_int(self->rotors[i + 1][28]) + 1) % 26));
 		if (self->current_settings[i + 1] == 0 ||
-			self->current_settings[i + 1] == ((ascii_to_int(self->rotors[i + 1][28]) + 1) % 26)) {
-				self->current_settings[i]++;
+			self->current_settings[i + 1] == ((ascii_to_int(self->rotors[i + 1][27]) + 1) % 26)) {
+				self->current_settings[i] = (self->current_settings[i] + 1) % 26;
 		} else {
 			break;
 		}

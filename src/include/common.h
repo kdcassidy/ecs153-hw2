@@ -9,7 +9,7 @@
   } while (0);
 
 /// Debug utilities, define DEBUG to enable them.
-// #define DEBUG
+#define DEBUG
 #ifdef DEBUG
 #include <stdio.h>
 #define DEBUGF(format, ...)                                                    \
