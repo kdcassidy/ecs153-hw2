@@ -6,6 +6,9 @@
 #include "Reflector.h"
 #include "Rotor.h"
 
+size_t ascii_to_int(char letter);
+char int_to_ascii(size_t number);
+
 struct Enigma {
 	size_t num_rotors;
 	char **rotors;
@@ -14,6 +17,8 @@ struct Enigma {
 	char *reflector;
 	size_t num_pairs;
 	char *pairs;
+
+	size_t *current_settings;
 };
 
 #endif
