@@ -18,7 +18,7 @@ TEST(EnigmaTests, GetReset) {
 	Enigma *enigma = get_default_Enigma();
 	char retc[enigma->num_rotors];
 	size_t reti[enigma->num_rotors];
-	int same = 1;
+
 
 	get_setting_Enigma(enigma, retc);
 	char exp0[enigma->num_rotors] = {'B', 'F', 'D'};
@@ -30,18 +30,30 @@ TEST(EnigmaTests, GetReset) {
 		enigma->current_settings[i] = 0;
 	}
 
-	same = 1;
 	get_setting_Enigma(enigma, retc);
 	char exp1[enigma->num_rotors] = {'A', 'A', 'A'};
 	for (int i = 0; i < enigma->num_rotors; i++) {
 		EXPECT_EQ(retc[i], exp1[i]);
 	}
 
-	same = 1;
 	reset_rotor_Enigma(enigma, reti);
 	size_t exp2[enigma->num_rotors] = {1, 5, 3};
 	for (int i = 0; i < enigma->num_rotors; i++) {
 		EXPECT_EQ(reti[i], exp2[i]);
+	}
+}
+
+TEST(EnigmaTests, TickRotors) {
+	Enigma *enigma = get_default_Enigma();
+	char retc[enigma->num_rotors];
+	size_t reti[enigma->num_rotors];
+
+	tick_Enigma(enigma);
+
+	get_setting_Enigma(enigma, retc);
+	char exp0[enigma->num_rotors] = {'B', 'F', 'E'};
+	for (int i = 0; i < enigma->num_rotors; i++) {
+		EXPECT_EQ(retc[i], exp0[i]);
 	}
 }
 

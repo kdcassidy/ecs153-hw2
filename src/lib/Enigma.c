@@ -84,6 +84,20 @@ void get_setting_Enigma(Enigma *self, char *ret) {
 	}
 }
 
-void tick_Enigma(Enigma *self);
+void tick_Enigma(Enigma *self) {
+	self->current_settings[self->num_rotors - 1] = (self->current_settings[self->num_rotors - 1] + 1) % 26;
+	for (int i = self->num_rotors - 2; i <= 0; i--) {
+		if (self->current_settings[i + 1] == 0 ||
+			self->current_settings[i + 1] == ((ascii_to_int(self->rotors[i + 1][28]) + 1) % 26)) {
+				self->current_settings[i]++;
+		} else {
+			break;
+		}
+	}
+}
 
-void tick_n_Enigma(Enigma *self, size_t n);
+void tick_n_Enigma(Enigma *self, size_t n) { // improve if permitted time
+	for (int i = 0; i < n; i++) {
+		tick_Enigma(self);
+	}
+}
